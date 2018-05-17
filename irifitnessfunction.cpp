@@ -81,8 +81,11 @@ void CIriFitnessFunction::SimulationStep(unsigned int n_simulation_step, double 
 	double maxSpeedEval = (fabs(leftSpeed - 0.5) + fabs(rightSpeed - 0.5));
 
 	/* Eval same direction partial fitness */
-	double sameDirectionEval = 1 - sqrt(fabs(leftSpeed - rightSpeed));
-	
+	double sameDirectionEval = exp(-pow(fabs(leftSpeed - rightSpeed), 2)/(2*pow(0.2, 2)));//1 - sqrt(fabs(leftSpeed - rightSpeed));
+
+	/* Eval robot going in circles */
+	double circleEval = exp(-pow(fabs(leftSpeed - rightSpeed) - 0.12, 2)/(2*pow(0.1, 2)));//-10 * pow(fabs(leftSpeed - rightSpeed) - 0.17 ,2) + 1;
+
 	/* Eval SENSORS */
 
 	/* Where the Max PROXIMITY sensor will be stored*/
@@ -240,11 +243,24 @@ void CIriFitnessFunction::SimulationStep(unsigned int n_simulation_step, double 
 	}
 	
 	/* START - FROM HERE YOU NEED TO CREATE YOUR FITNESS */	
-
+	/* Acoto circleEval por abajo */
+	if (circleEval < 0.0)
+	{
+		circleEval = 0.0;
+	}
 	maxProxSensorEval = 1 - maxProxSensorEval;
-	
+	double fitness;
 	/* Max Speed * Same Direction * Min Prox * go forwards */
-	double fitness = 1.0;//maxSpeedEval * sameDirectionEval * maxProxSensorEval * (leftSpeed * rightSpeed);
+	if(maxBlueLightSensorEval > 0.0){
+
+		fitness = maxSpeedEval * circleEval * maxProxSensorEval * (leftSpeed * rightSpeed);
+
+	} else {
+
+		fitness = maxSpeedEval * sameDirectionEval * maxProxSensorEval * (leftSpeed * rightSpeed);
+	}
+
+	
 
 	m_unNumberOfSteps++;
 	m_fComputedFitness += fitness;
