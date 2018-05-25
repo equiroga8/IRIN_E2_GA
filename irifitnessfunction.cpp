@@ -188,9 +188,9 @@ void CIriFitnessFunction::SimulationStep(unsigned int n_simulation_step, double 
 					{	
 						maxBlueLightSensorEval = pfThisSensorInputs[j];
 					}
-					if (j==0)
+					if (j==1)
 						blueLightS0 = pfThisSensorInputs[j];
-					else if (j==7)
+					else if (j==2)
 						blueLightS7 = pfThisSensorInputs[j];
 				}
 				break;
@@ -250,17 +250,45 @@ void CIriFitnessFunction::SimulationStep(unsigned int n_simulation_step, double 
 	}
 	maxProxSensorEval = 1 - maxProxSensorEval;
 	double fitness;
-	/* Max Speed * Same Direction * Min Prox * go forwards */
+
+
+	
+
+	/* FITNESS EXPERIMENTO 1 */
+	
+
 	if(maxBlueLightSensorEval > 0.0){
 
-		fitness = maxSpeedEval * circleEval * maxProxSensorEval * (leftSpeed * rightSpeed);
+		fitness = maxSpeedEval * circleEval * maxProxSensorEval * (leftSpeed * rightSpeed); //CIRCULOS
 
 	} else {
 
-		fitness = maxSpeedEval * sameDirectionEval * maxProxSensorEval * (leftSpeed * rightSpeed);
+		// Max Speed * Same Direction * Min Prox * go forwards 
+		fitness = maxSpeedEval * sameDirectionEval * maxProxSensorEval * (leftSpeed * rightSpeed);// RECTO
 	}
 
 	
+	/*END FITNESS EXPERIMENTO 1 */
+
+
+
+	/* FITNESS EXPERIMENTO 2 */
+	/*
+	if(maxBlueLightSensorEval > 0.0){
+
+		fitness = maxSpeedEval *  sameDirectionEval * (leftSpeed * rightSpeed) * (blueLightS0 + blueLightS7)/2;
+
+	} else if (maxRedLightSensorEval > 0.0) {
+
+		fitness = maxSpeedEval * maxProxSensorEval * (leftSpeed * rightSpeed) * maxRedLightSensorEval * redBattery[0];
+	}
+
+	else if (maxLightSensorEval > 0.0) {
+
+		fitness = maxSpeedEval * maxProxSensorEval * (leftSpeed * rightSpeed) * maxLightSensorEval * battery[0];
+	}
+	*/
+	/*END FITNESS EXPERIMENTO 2 */
 
 	m_unNumberOfSteps++;
 	m_fComputedFitness += fitness;
