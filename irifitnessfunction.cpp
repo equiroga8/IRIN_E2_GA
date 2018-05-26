@@ -81,10 +81,10 @@ void CIriFitnessFunction::SimulationStep(unsigned int n_simulation_step, double 
 	double maxSpeedEval = (fabs(leftSpeed - 0.5) + fabs(rightSpeed - 0.5));
 
 	/* Eval same direction partial fitness */
-	double sameDirectionEval = exp(-pow(fabs(leftSpeed - rightSpeed), 2)/(2*pow(0.2, 2)));//1 - sqrt(fabs(leftSpeed - rightSpeed));
+	double sameDirectionEval = 1 - sqrt(fabs(leftSpeed - rightSpeed)); //exp(-pow(fabs(leftSpeed - rightSpeed), 2)/(2*pow(0.2, 2)));
 
 	/* Eval robot going in circles */
-	double circleEval = exp(-pow(fabs(leftSpeed - rightSpeed) - 0.12, 2)/(2*pow(0.1, 2)));//-10 * pow(fabs(leftSpeed - rightSpeed) - 0.17 ,2) + 1;
+	double circleEval = exp(-pow(fabs(leftSpeed - rightSpeed) - 0.04, 2)/(2*pow(0.1, 2)));//-10 * pow(fabs(leftSpeed - rightSpeed) - 0.17 ,2) + 1;
 
 	/* Eval SENSORS */
 
@@ -256,7 +256,7 @@ void CIriFitnessFunction::SimulationStep(unsigned int n_simulation_step, double 
 
 	/* FITNESS EXPERIMENTO 1 */
 	
-
+	/*
 	if(maxBlueLightSensorEval > 0.0){
 
 		fitness = maxSpeedEval * circleEval * maxProxSensorEval * (leftSpeed * rightSpeed); //CIRCULOS
@@ -267,12 +267,26 @@ void CIriFitnessFunction::SimulationStep(unsigned int n_simulation_step, double 
 		fitness = maxSpeedEval * sameDirectionEval * maxProxSensorEval * (leftSpeed * rightSpeed);// RECTO
 	}
 
-	
+	*/
 	/*END FITNESS EXPERIMENTO 1 */
 
 
 
 	/* FITNESS EXPERIMENTO 2 */
+	
+	if(maxBlueLightSensorEval > 0.0){
+
+		fitness = maxSpeedEval *  circleEval * (leftSpeed * rightSpeed) * (blueLightS0 + blueLightS7)/2;
+
+	} else {
+
+		fitness = maxSpeedEval * sameDirectionEval * maxProxSensorEval * (leftSpeed * rightSpeed);// RECTO
+	}
+
+	
+	/*END FITNESS EXPERIMENTO 2 */
+
+	/* FITNESS EXPERIMENTO 3 */
 	/*
 	if(maxBlueLightSensorEval > 0.0){
 
@@ -288,7 +302,7 @@ void CIriFitnessFunction::SimulationStep(unsigned int n_simulation_step, double 
 		fitness = maxSpeedEval * maxProxSensorEval * (leftSpeed * rightSpeed) * maxLightSensorEval * battery[0];
 	}
 	*/
-	/*END FITNESS EXPERIMENTO 2 */
+	/*END FITNESS EXPERIMENTO 3 */
 
 	m_unNumberOfSteps++;
 	m_fComputedFitness += fitness;
