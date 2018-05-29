@@ -50,7 +50,11 @@ double CIriFitnessFunction::GetFitness()
 	int coll = (CCollisionManager::GetInstance()->GetTotalNumberOfCollisions());
 
 	/* Get the fitness divided by the number of steps */
-	double fit = ( m_fComputedFitness / (double) m_unNumberOfSteps ) * (1 - ((double) (fmin(coll,10.0)/10.0))); //* (1 - ((double) (fmin(m_unGreyNumber,100.0)/100.0)));
+
+	/////////////¡¡ATENCION!!////////////////////////////////////////////
+
+	/* Descomentar la ultima parte de fit solo en los experimentos 1, 2A y 2B */
+	double fit = ( m_fComputedFitness / (double) m_unNumberOfSteps ) ;/* (1 - ((double) (fmin(coll,10.0)/10.0)));*/
 
 	/* If fitness less than 0, put it to 0 */
 	if ( fit < 0.0 ) fit = 0.0;
@@ -83,9 +87,10 @@ void CIriFitnessFunction::SimulationStep(unsigned int n_simulation_step, double 
 	/* Eval same direction partial fitness */
 	double sameDirectionEval = 1 - sqrt(fabs(leftSpeed - rightSpeed)); //exp(-pow(fabs(leftSpeed - rightSpeed), 2)/(2*pow(0.2, 2)));
 
-	/* Eval robot going in circles */ // otros experimentos cicleEval = 0.12
-	double circleEval1 = exp(-pow(fabs(leftSpeed - rightSpeed) - 0.08, 2)/(2*pow(0.1, 2)));//-10 * pow(fabs(leftSpeed - rightSpeed) - 0.17 ,2) + 1;
+	/* Eval robot going in circles */
+	double circleEval1 = exp(-pow(fabs(leftSpeed - rightSpeed) - 0.12, 2)/(2*pow(0.1, 2)));
 	double circleEval2 = exp(-pow(fabs(leftSpeed - rightSpeed) - 0.04, 2)/(2*pow(0.1, 2)));
+	double circleEval3 = exp(-pow(fabs(leftSpeed - rightSpeed) - 0.08, 2)/(2*pow(0.1, 2)));
 
 	/* Eval SENSORS */
 
@@ -99,8 +104,6 @@ void CIriFitnessFunction::SimulationStep(unsigned int n_simulation_step, double 
 	double maxRedLightSensorEval 	= 0.0;
 	/* Where the Max CONTACT sensor will be stored*/
 	double maxContactSensorEval = 0.0;
-
-	int m_unGreyNumber = 0;
 
 	/* Where the GROUND MEMORY will be stored */
 	double* groundMemory;
@@ -259,25 +262,20 @@ void CIriFitnessFunction::SimulationStep(unsigned int n_simulation_step, double 
 	}
 	
 	/* START - FROM HERE YOU NEED TO CREATE YOUR FITNESS */	
-	/* Acoto circleEval por abajo */
-	if (circleEval1 < 0.0 || circleEval2 < 0.0)
-	{
-		circleEval1 = circleEval2 = 0.0;
-	}
 	maxProxSensorEval = 1 - maxProxSensorEval;
 
 	for (int i = 0; i < 3; i++){
 		if(ground[i] == 0.5) 
 		m_unGreyNumber++;
 	}
-	double greyEval = exp(-pow(m_unGreyNumber - 3, 2)/(8));
+	
 	
 	/* FITNESS EXPERIMENTO 1 */
 	
 	/*
 	if(maxBlueLightSensorEval > 0.0){
 
-		fitness = maxSpeedEval * circleEval1 * maxProxSensorEval * (leftSpeed * rightSpeed); //CIRCULOS
+		fitness = maxSpeedEval * circleEval2 * maxProxSensorEval * (leftSpeed * rightSpeed); //CIRCULOS
 
 	} else {
 
@@ -294,7 +292,7 @@ void CIriFitnessFunction::SimulationStep(unsigned int n_simulation_step, double 
 	/*
 	if(maxBlueLightSensorEval > 0.0){
 
-		fitness = maxSpeedEval *  circleEval2 * (leftSpeed * rightSpeed) * (blueLightS0 + blueLightS7)/2;
+		fitness = maxSpeedEval *  circleEval1 * (leftSpeed * rightSpeed) * (blueLightS0 + blueLightS7)/2;
 
 	} else {
 
@@ -322,8 +320,8 @@ void CIriFitnessFunction::SimulationStep(unsigned int n_simulation_step, double 
 
 	}
 	double blue = circleEval2 * (blueLightS1 + blueLightS2)/2;
-	double red = circleEval1 * (redLightS5 + redLightS6)/2;
-	double yellow = circleEval1 * (lightS5 + lightS6)/2;
+	double red = circleEval3 * (redLightS5 + redLightS6)/2;
+	double yellow = circleEval3 * (lightS5 + lightS6)/2;
 
 	double fitness = maxSpeedEval * (leftSpeed * rightSpeed) *  (blueLightOn * blue + redLightOn * red + lightOn * yellow );
 	*/
@@ -348,8 +346,8 @@ void CIriFitnessFunction::SimulationStep(unsigned int n_simulation_step, double 
 	}
 
 	double blue = circleEval2 * (blueLightS1 + blueLightS2)/2;
-	double red = circleEval1 * (redLightS5 + redLightS6)/2;
-	double yellow = circleEval1 * (lightS5 + lightS6)/2;
+	double red = circleEval3 * (redLightS5 + redLightS6)/2;
+	double yellow = circleEval3 * (lightS5 + lightS6)/2;
 
 	double fitness = maxSpeedEval * (leftSpeed * rightSpeed) *  (blueLightOn * blue +  redLightOn * red + lightOn * yellow);
 	
