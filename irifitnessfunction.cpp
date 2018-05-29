@@ -264,10 +264,7 @@ void CIriFitnessFunction::SimulationStep(unsigned int n_simulation_step, double 
 	/* START - FROM HERE YOU NEED TO CREATE YOUR FITNESS */	
 	maxProxSensorEval = 1 - maxProxSensorEval;
 
-	for (int i = 0; i < 3; i++){
-		if(ground[i] == 0.5) 
-		m_unGreyNumber++;
-	}
+	
 	
 	
 	/* FITNESS EXPERIMENTO 1 */
