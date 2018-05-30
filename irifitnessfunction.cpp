@@ -30,7 +30,7 @@ CIriFitnessFunction::CIriFitnessFunction(const char* pch_name,
 
 	m_unNumberOfSteps = 0;
 	m_fComputedFitness = 0.0;
-	m_unCollisionsNumber 	= 0;
+	m_unCollisionsNumber = 0;
 	
 }
 
@@ -50,7 +50,7 @@ double CIriFitnessFunction::GetFitness()
 	int coll = (CCollisionManager::GetInstance()->GetTotalNumberOfCollisions());
 
 	/* Get the fitness divided by the number of steps */
-	double fit = ( m_fComputedFitness / (double) m_unNumberOfSteps ) * (1 - ((double) (fmin(coll,10.0)/10.0)));
+	double fit = ( m_fComputedFitness / (double) m_unNumberOfSteps ) ;//* (1 - ((double) (fmin(coll,10.0)/10.0))); //* (1 - ((double) (fmin(m_unGreyNumber,100.0)/100.0)));
 
 	/* If fitness less than 0, put it to 0 */
 	if ( fit < 0.0 ) fit = 0.0;
@@ -99,6 +99,8 @@ void CIriFitnessFunction::SimulationStep(unsigned int n_simulation_step, double 
 	double maxRedLightSensorEval 	= 0.0;
 	/* Where the Max CONTACT sensor will be stored*/
 	double maxContactSensorEval = 0.0;
+
+	int m_unGreyNumber = 0;
 
 	/* Where the GROUND MEMORY will be stored */
 	double* groundMemory;
@@ -263,6 +265,12 @@ void CIriFitnessFunction::SimulationStep(unsigned int n_simulation_step, double 
 		circleEval1 = circleEval2 = 0.0;
 	}
 	maxProxSensorEval = 1 - maxProxSensorEval;
+
+	for (int i = 0; i < 3; i++){
+		if(ground[i] == 0.5) 
+		m_unGreyNumber++;
+	}
+	double greyEval = exp(-pow(m_unGreyNumber - 3, 2)/(8));
 	
 	/* FITNESS EXPERIMENTO 1 */
 	
@@ -299,20 +307,19 @@ void CIriFitnessFunction::SimulationStep(unsigned int n_simulation_step, double 
 	/* FITNESS EXPERIMENTO 3 */
 	
 	if(maxBlueLightSensorEval > 0.0){
+
 		blueLightOn = 1;
 
-		//fitness = maxSpeedEval *  circleEval2 * (leftSpeed * rightSpeed) * (blueLightS1 + blueLightS2)/2;
-
 	} else if (maxRedLightSensorEval > 0.0) {
+
 		redLightOn = 1;
 
-		//fitness = maxSpeedEval * sameDirectionEval * (leftSpeed * rightSpeed) * maxProxSensorEval * (redLightS0 +redLightS7)/2 * redBattery[0];
 	}
 
 	else if (maxLightSensorEval > 0.0) {
+
 		lightOn = 1;
 
-		//fitness = maxSpeedEval * sameDirectionEval * (leftSpeed * rightSpeed) *  maxProxSensorEval  * (lightS0 + lightS7)/2 *  battery[0];
 	}
 	double blue = circleEval2 * (blueLightS1 + blueLightS2)/2;
 	double red = circleEval1 * (redLightS5 + redLightS6)/2;
@@ -325,26 +332,26 @@ void CIriFitnessFunction::SimulationStep(unsigned int n_simulation_step, double 
 	/* FITNESS EXPERIMENTO 4 */
 	/*
 	if(maxBlueLightSensorEval > 0.0){
+
 		blueLightOn = 1;
 
-		//fitness = maxSpeedEval *  circleEval2 * (leftSpeed * rightSpeed) * (blueLightS1 + blueLightS2)/2;
-
 	} else if (maxRedLightSensorEval > 0.0) {
+
 		redLightOn = 1;
 
-		//fitness = maxSpeedEval * sameDirectionEval * (leftSpeed * rightSpeed) * maxProxSensorEval * (redLightS0 +redLightS7)/2 * redBattery[0];
 	}
 
 	else if (maxLightSensorEval > 0.0) {
+
 		lightOn = 1;
 
-		//fitness = maxSpeedEval * sameDirectionEval * (leftSpeed * rightSpeed) *  maxProxSensorEval  * (lightS0 + lightS7)/2 *  battery[0];
 	}
-	double blue = circleEval2 * (blueLightS1 + blueLightS2)/2;
-	double red = (redLightS0 + redLightS7)/2 * redBattery[0];
-	double yellow = (lightS0 + lightS7)/2 *  battery[0];
 
-	fitness = maxSpeedEval * (leftSpeed * rightSpeed) *  (blueLightOn * blue + sameDirectionEval * maxProxSensorEval* (redLightOn * red + lightOn * yellow ));
+	double blue = circleEval2 * (blueLightS1 + blueLightS2)/2;
+	double red = circleEval1 * (redLightS5 + redLightS6)/2;
+	double yellow = circleEval1 * (lightS5 + lightS6)/2;
+
+	double fitness = maxSpeedEval * (leftSpeed * rightSpeed) *  (blueLightOn * blue +  redLightOn * red + lightOn * yellow);
 	*/
 	/*END FITNESS EXPERIMENTO 4 */
 
@@ -363,7 +370,13 @@ void CIriFitnessFunction::SimulationStep(unsigned int n_simulation_step, double 
 
 	if ( nContact == 1 )
 		m_unCollisionsNumber++;
-}
+	}
+	
+	
+		
+
+
+
 
 /******************************************************************************/
 /******************************************************************************/
