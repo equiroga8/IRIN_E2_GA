@@ -47,7 +47,7 @@ EXP4) Para ejecutar el experimento 4:
 	-En irifitnessfunction dejamos sin comentar solo la parte correspondiente a EXP 3, 4 y 5 (al final de SimulationStep)
 	-Ejecutamos ./irsim -E 24 -p paramFiles/paramFileNeuronEvo4.txt -c (habiendo ejecutado make previamente)
 
-EXP4) Para ejecutar el experimento 5:
+EXP5) Para ejecutar el experimento 5:
 	-Introducimos en nuestro simulador los archivos del directorio geneticDataFiles5 (en geneticDataFiles)
 	-Introducimos en nuestro simulador el archivo paramFileNeuronEvo5.txt (en paramFiles)
 	-En irifitnessfunction dejamos sin comentar solo la parte correspondiente a EXP 3, 4 y 5 (al final de SimulationStep)
