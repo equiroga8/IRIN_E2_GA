@@ -2,26 +2,26 @@
 %%%%%%%%%%%%%%%% EXTRA %%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-NUMBER OF ROBOTS								= 1	
+NUMBER OF ROBOTS					= 1	
 ROBOT 1: X POSITION (meters)		= 0.0
 ROBOT 1: Y POSITION (meters)		= 0.0
-ROBOT 1: ORIENTATION (radians) 	= 0.0
+ROBOT 1: ORIENTATION (radians) 		= 0.0
 WRITE TO FILE (0 No, 1 YES )		= 1
-RUN TIME													= 10000
+RUN TIME							= 10000
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%% ENVIRONMENT %%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-NUMBER OF LIGHT OBJECTS  			= 1
-LIGHT 1 X POSITION										= -0.7
-LIGHT 1 Y POSITION										= 0.7
-NUMBER OF BLUE LIGHT OBJECTS  = 1
-BLUELIGHT 1 X POSITION										= 0.0
-BLUELIGHT 1 Y POSITION										= 0.0
-NUMBER OF RED LIGHT OBJECTS  = 1
-REDLIGHT 1 X POSITION										= 0.7
-REDLIGHT 1 Y POSITION										= -0.7
+NUMBER OF LIGHT OBJECTS  				= 1
+LIGHT 1 X POSITION						= -0.7
+LIGHT 1 Y POSITION						= 0.7
+NUMBER OF BLUE LIGHT OBJECTS  			= 1
+BLUELIGHT 1 X POSITION					= 0.0
+BLUELIGHT 1 Y POSITION					= 0.0
+NUMBER OF RED LIGHT OBJECTS  			= 1
+REDLIGHT 1 X POSITION					= 0.7
+REDLIGHT 1 Y POSITION					= -0.7
 NUMBER OF GROUND AREA					= 0
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -31,15 +31,15 @@ NUMBER OF GROUND AREA					= 0
 LIGHT SENSOR RANGE (meters)					= 5.0
 BLUE LIGHT SENSOR RANGE (meters)			= 5.0
 RED LIGHT SENSOR RANGE (meters)				= 5.0
-BATTERY SENSOR RANGE (meters)					= 0.5
-BATTERY CHARGE COEF 									= 0.01
-BATTERY DISCHARGE COEF								= 0.001
-BLUE BATTERY SENSOR RANGE (meters)		= 0.5
-BLUE BATTERY CHARGE COEF 							= 0.01
-BLUE BATTERY DISCHARGE COEF						= 0.001
+BATTERY SENSOR RANGE (meters)				= 0.5
+BATTERY CHARGE COEF 						= 0.01
+BATTERY DISCHARGE COEF						= 0.001
+BLUE BATTERY SENSOR RANGE (meters)			= 0.5
+BLUE BATTERY CHARGE COEF 					= 0.01
+BLUE BATTERY DISCHARGE COEF					= 0.001
 RED BATTERY SENSOR RANGE (meters)			= 0.5
-RED BATTERY CHARGE COEF 							= 0.01
-RED BATTERY DISCHARGE COEF						= 0.001
+RED BATTERY CHARGE COEF 					= 0.01
+RED BATTERY DISCHARGE COEF					= 0.001
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%% MORPHOLOGY %%%%%%%%%%%%%%%%%%%%%%
@@ -61,14 +61,14 @@ CHROMOSOME LENGTH 								= 106
 POPULATION SIZE									= 200
 NUMBER OF GENERATIONS							= 1501		
 EVALUATION TIME									= 400
-DO CROSSOVER ( 0 No, 1 Yes )			= 1
-NUMBER OF CROSSOVERS ( Always 1 ) = 1
-CROSSOVER DISTANCE 	 ( Always 1 ) = 1
-MUTATION RATE										= 0.05
-NUMBER OF ELITES									= 5
-FITNESS FUNCTION									= 4
-SAMPLES PER CHORMOSOME								= 2
-RANDOM POS/ORIEN (0 NO, 1 YES)    = 0
+DO CROSSOVER ( 0 No, 1 Yes )					= 1
+NUMBER OF CROSSOVERS ( Always 1 ) 				= 1
+CROSSOVER DISTANCE 	 ( Always 1 ) 				= 1
+MUTATION RATE									= 0.05
+NUMBER OF ELITES								= 5
+FITNESS FUNCTION								= 4
+SAMPLES PER CHORMOSOME							= 2
+RANDOM POS/ORIEN (0 NO, 1 YES)   	 			= 0
 RANDOM INIT AREA X								= 1.0
 RANDOM INIT AREA Y								= 1.0
 

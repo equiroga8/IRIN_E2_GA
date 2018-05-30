@@ -51,10 +51,16 @@ double CIriFitnessFunction::GetFitness()
 
 	/* Get the fitness divided by the number of steps */
 
+
+
+
 	/////////////¡¡ATENCION!!////////////////////////////////////////////
 
 	/* Descomentar la ultima parte de fit solo en los experimentos 1, 2A y 2B */
 	double fit = ( m_fComputedFitness / (double) m_unNumberOfSteps ) ;/* (1 - ((double) (fmin(coll,10.0)/10.0)));*/
+
+
+
 
 	/* If fitness less than 0, put it to 0 */
 	if ( fit < 0.0 ) fit = 0.0;
@@ -272,7 +278,7 @@ void CIriFitnessFunction::SimulationStep(unsigned int n_simulation_step, double 
 	/*
 	if(maxBlueLightSensorEval > 0.0){
 
-		fitness = maxSpeedEval * circleEval2 * maxProxSensorEval * (leftSpeed * rightSpeed); //CIRCULOS
+		fitness = maxSpeedEval * circleEval1 * maxProxSensorEval * (leftSpeed * rightSpeed); //CIRCULOS
 
 	} else {
 
@@ -285,11 +291,12 @@ void CIriFitnessFunction::SimulationStep(unsigned int n_simulation_step, double 
 
 
 
-	/* FITNESS EXPERIMENTO 2 */
+
+	/* FITNESS EXPERIMENTO 2A y 2B*/
 	/*
 	if(maxBlueLightSensorEval > 0.0){
 
-		fitness = maxSpeedEval *  circleEval1 * (leftSpeed * rightSpeed) * (blueLightS0 + blueLightS7)/2;
+		fitness = maxSpeedEval *  circleEval2 * (leftSpeed * rightSpeed) * (blueLightS0 + blueLightS7)/2;
 
 	} else {
 
@@ -297,34 +304,12 @@ void CIriFitnessFunction::SimulationStep(unsigned int n_simulation_step, double 
 	}
 
 	*/
-	/*END FITNESS EXPERIMENTO 2 */
+	/*END FITNESS EXPERIMENTO 2A y 2B */
 
-	/* FITNESS EXPERIMENTO 3 */
-	/*
-	if(maxBlueLightSensorEval > 0.0){
 
-		blueLightOn = 1;
 
-	} else if (maxRedLightSensorEval > 0.0) {
 
-		redLightOn = 1;
-
-	}
-
-	else if (maxLightSensorEval > 0.0) {
-
-		lightOn = 1;
-
-	}
-	double blue = circleEval2 * (blueLightS1 + blueLightS2)/2;
-	double red = circleEval3 * (redLightS5 + redLightS6)/2;
-	double yellow = circleEval3 * (lightS5 + lightS6)/2;
-
-	double fitness = maxSpeedEval * (leftSpeed * rightSpeed) *  (blueLightOn * blue + redLightOn * red + lightOn * yellow );
-	*/
-	/*END FITNESS EXPERIMENTO 3 */
-
-	/* FITNESS EXPERIMENTO 4 */
+	/* FITNESS EXPERIMENTO 3, 4 y 5 */
 	
 	if(maxBlueLightSensorEval > 0.0){
 
@@ -348,7 +333,9 @@ void CIriFitnessFunction::SimulationStep(unsigned int n_simulation_step, double 
 
 	double fitness = maxSpeedEval * (leftSpeed * rightSpeed) *  (blueLightOn * blue +  redLightOn * red + lightOn * yellow);
 	
-	/*END FITNESS EXPERIMENTO 4 */
+	/*END FITNESS EXPERIMENTO 3, 4 y 5 */
+
+
 
 	m_unNumberOfSteps++;
 	m_fComputedFitness += fitness;
@@ -365,13 +352,8 @@ void CIriFitnessFunction::SimulationStep(unsigned int n_simulation_step, double 
 
 	if ( nContact == 1 )
 		m_unCollisionsNumber++;
-	}
+}
 	
 	
-		
-
-
-
-
 /******************************************************************************/
 /******************************************************************************/
