@@ -56,11 +56,15 @@ double CIriFitnessFunction::GetFitness()
 
 	/////////////¡¡ATENCION!!////////////////////////////////////////////
 
-	/* Descomentar la ultima parte de fit solo en los experimentos 1, 2A y 2B */
-	double fit = ( m_fComputedFitness / (double) m_unNumberOfSteps ) ;/* (1 - ((double) (fmin(coll,10.0)/10.0)));*/
+	/* Fitness experimentos 1, 2A y 2B */
+	/*
+	double fit = ( m_fComputedFitness / (double) m_unNumberOfSteps ) * (1 - ((double) (fmin(coll,10.0)/10.0)));
+	*/
+	/*  END Fitness experimentos 1, 2A y 2B */
 
-
-
+	/* Fitness experimentos 3, 4 y 5 */
+	double fit = ( m_fComputedFitness / (double) m_unNumberOfSteps );
+	/*  END Fitness experimentos 3, 4 y 5 */
 
 	/* If fitness less than 0, put it to 0 */
 	if ( fit < 0.0 ) fit = 0.0;
