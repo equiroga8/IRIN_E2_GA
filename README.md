@@ -1,64 +1,16 @@
-En la carpeta actual se puede encontrar en primer lugar un conjunto de directorios correspondientes a los geneticDataFiles de cada uno de nuestros experimentos. Tambien podemos encontrar los directorios correspondientes a los outputFiles de nuestros experimentos. 
+# Electron simulation
 
-Más adelante podemos ver los objetos de las luces azul, amarilla y roja con sus correspondientes modificaciones.
+The electron is a subatomic particle which, together with the atomic nucleus (formed of protons and neutrons) make up atoms. The exchange of electrons between two or more atoms is the main cause of chemical bonding. This is the inspiration for our project. The robot will simulate the behaviour of an electron where throughout this project we will "train" our electron to do some of the basic functions of a real electron. That is, orbiting around an atomic nucleus and the transition of the electron from one nucleus to another.
 
-Se incluye tambien el archivo textneuronexp.cpp que es el necesario para llevar a cabo nuestro experimento.
+![electron](https://edu-quiroga.neocities.org/Selection_001.png)
 
-Nuestras distientas funciones de fitness empleadas se encuentran en el archivo irifitnessfunction.cpp. Estas funciones se encuentran en la parte final del código y están comentadas para poder usar solo la que nos haga falta en nuestro caso dependiendo del experimento elegido. Se incluye también irifitnessfunction.h.
+The way we have proposed the project is as follows: we will start by implementing basic functions and we will be building on top of it to finally have implemented the functionalities described in the previous paragraph. It will be divided into two parts, the first one will consist of the implementation of behaviors through non-recurring artificial neural networks. The second part will be an extension of the final behavior to a recurrent artificial neural network.
 
-Por último se incluyen los paramFiles correspondientes a cada uno de nuestro experimentos.
+ ![diagram](https://edu-quiroga.neocities.org/EXP4.png)
+ 
+ ## Authors
 
-
-
-Pasos para realizar los experimentos:
-
-0) En primer lugar introduciremos en nuestro sumilador los archivos bluelightobject.cpp, lightobject.cpp, redlightobject.cpp, testneuronexp.cpp, irifitnessfunction.cpp e irifitnessfunction.h. Estos archivos ya serán validos para todos los experimentos.
-
-EXP1) Para ejecutar el experimento 1:
-	-Introducimos en nuestro simulador los archivos del directorio geneticDataFiles1 (en geneticDataFiles)
-	-Introducimos en nuestro simulador el archivo paramFileNeuronEvo1.txt (en paramFiles)
-	-En irifitnessfunction dejamos sin comentar solo la parte correspondiente al EXP1 (al final de SimulationStep)
-	-En irifitnessfunction, en GetFitness, descomentar la última parte de la linea donde se calcula la variable fit.
-	-Ejecutamos ./irsim -E 21 -p paramFiles/paramFileNeuronEvo1.txt -c (habiendo ejecutado make previamente)
-
-EXP2) Para ejecutar el experimento 2A:
-	-Introducimos en nuestro simulador los archivos del directorio geneticDataFiles2A (en geneticDataFiles)
-	-Introducimos en nuestro simulador el archivo paramFileNeuronEvo2.txt (en paramFiles)
-	-En irifitnessfunction dejamos sin comentar solo la parte correspondiente al EXP2A y EXP2B (al final de SimulationStep)
-	-En irifitnessfunction, en GetFitness, descomentar la última parte de la linea donde se calcula la variable fit.
-	-Ejecutamos ./irsim -E 21 -p paramFiles/paramFileNeuronEvo2.txt -c (habiendo ejecutado make previamente)
-
-EXP2B) Para ejecutar el experimento 2B:
-	-Introducimos en nuestro simulador los archivos del directorio geneticDataFiles2B (en geneticDataFiles)
-	-Introducimos en nuestro simulador el archivo paramFileNeuronEvo2B.txt (en paramFiles)
-	-En irifitnessfunction dejamos sin comentar solo la parte correspondiente al EXP2A y EXP2B (al final de SimulationStep)
-	-En irifitnessfunction, en GetFitness, descomentar la última parte de la linea donde se calcula la variable fit.
-	-Ejecutamos ./irsim -E 21 -p paramFiles/paramFileNeuronEvo2B.txt -c (habiendo ejecutado make previamente)
-
-EXP3) Para ejecutar el experimento 3:
-	-Introducimos en nuestro simulador los archivos del directorio geneticDataFiles3 (en geneticDataFiles)
-	-Introducimos en nuestro simulador el archivo paramFileNeuronEvo3.txt (en paramFiles)
-	-En irifitnessfunction dejamos sin comentar solo la parte correspondiente a EXP 3, 4 y 5 (al final de SimulationStep)
-	-Ejecutamos ./irsim -E 21 -p paramFiles/paramFileNeuronEvo3.txt -c (habiendo ejecutado make previamente)
-
-EXP4) Para ejecutar el experimento 4:
-	-Introducimos en nuestro simulador los archivos del directorio geneticDataFiles4 (en geneticDataFiles)
-	-Introducimos en nuestro simulador el archivo paramFileNeuronEvo4.txt (en paramFiles)
-	-En irifitnessfunction dejamos sin comentar solo la parte correspondiente a EXP 3, 4 y 5 (al final de SimulationStep)
-	-Ejecutamos ./irsim -E 24 -p paramFiles/paramFileNeuronEvo4.txt -c (habiendo ejecutado make previamente)
-
-EXP5) Para ejecutar el experimento 5:
-	-Introducimos en nuestro simulador los archivos del directorio geneticDataFiles5 (en geneticDataFiles)
-	-Introducimos en nuestro simulador el archivo paramFileNeuronEvo5.txt (en paramFiles)
-	-En irifitnessfunction dejamos sin comentar solo la parte correspondiente a EXP 3, 4 y 5 (al final de SimulationStep)
-	-Ejecutamos ./irsim -E 24 -p paramFiles/paramFileNeuronEvo5.txt -c (habiendo ejecutado make previamente)
-
-
-
-
-
-
-
-
-
+* **Rodrigo Martín** - [rodrimart97](https://github.com/rodrimart97)
+* **Eduardo Quiroga** - [equiroga8](https://github.com/equiroga8)
+ 
 
